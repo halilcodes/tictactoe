@@ -15,10 +15,10 @@ def update_board():
         """
 
 def make_move(player, move):
-    if moves[move] == "-":
+    if (move in moves.keys()) and (moves[move] == "-"):
         moves[move] = player
     else:
-        move = input(f"That space is taken. chose again for player {player}: ")
+        move = input(f"That space is taken or invalid character for {move}. chose again for player {player}: ")
         make_move(player, move)
 
 def is_draw(moves):
@@ -50,18 +50,20 @@ def check_status(player, moves):
     else:
         return False
 
-print(update_board())
-while True:
-    player = "X"
-    move = input(f"{player} plays now. Make a move using Num Keys. ")
-    make_move(player, move)
+
+if __name__ == "__main__":
     print(update_board())
-    if check_status(player, moves):
-        break
-    player = "O"
-    move = input(f"{player} plays now. Make a move using Num Keys. ")
-    make_move(player, move)
-    print(update_board())
-    if check_status(player, moves):
-        break
-    
+    while True:
+        player = "X"
+        move = input(f"{player} plays now. Make a move using Num Keys. ")
+        make_move(player, move)
+        print(update_board())
+        if check_status(player, moves):
+            break
+        player = "O"
+        move = input(f"{player} plays now. Make a move using Num Keys. ")
+        make_move(player, move)
+        print(update_board())
+        if check_status(player, moves):
+            break
+        
