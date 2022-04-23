@@ -40,26 +40,28 @@ def is_win(player, moves):
     else:
         return False
 
+def check_status(player, moves):
+    if is_win(player, moves):
+        print(f"{player} wins.")
+        return True
+    elif is_draw(moves):
+        print("Its a draw")
+        return True
+    else:
+        return False
+
 print(update_board())
 while True:
     player = "X"
     move = input(f"{player} plays now. Make a move using Num Keys. ")
     make_move(player, move)
     print(update_board())
-    if is_win(player, moves):
-        print(f"{player} wins.")
-        break
-    elif is_draw(moves):
-        print("Its a draw")
+    if check_status(player, moves):
         break
     player = "O"
     move = input(f"{player} plays now. Make a move using Num Keys. ")
     make_move(player, move)
     print(update_board())
-    if is_win(player, moves):
-        print(f"{player} wins.")
-        break
-    elif is_draw(moves):
-        print("Its a draw")
+    if check_status(player, moves):
         break
     
